@@ -53,8 +53,8 @@ class MemoryGame {
   checkIfPair() {
     if (this.pickedCards.length < 2) return;
     this.pairsClicked += 1;
-    const card1 = this.pickedCards[0]getAttribute;
-    const card2 = this.pickedCards[1];
+    const card1 = this.pickedCards[0].getAttribute("name");
+    const card2 = this.pickedCards[1].getAttribute("name");
     if (card1 === card2) {
       this.pairsGuessed += 1;
       this.pickedCards = [];
