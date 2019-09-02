@@ -21,10 +21,43 @@ class MemoryGame {
     this.cards[randomIndex] = temporaryValue;
   }
   }
-  checkIfPair(card1, card2) {
+
+  cardClicked (card) {
+    console.log('Card clicked: ', card);
+
+    if (this.pickedCards.length < 2) {
+      this.pickedCards.push(card);
+      this.flipCard(card);
+      }
+    
+    if (this.pickedCards.length == 2) {
+      if (this.checkIfPair()) this.isFinished();
+      else this.resetPickedCards();
+    }
+  }
+
+  resetPickedCards() {
+    setTimeout( () => {
+    this.pickedCards.forEach(card => this.flipCard(card));
+    this.pickedCards = [];
+    }, 1000)
+  }
+
+  flipCard(card) {
+    card.childNodes.forEach( child => {
+    child.classList.toggle("back");
+    console.log('Card flipped: ', child);
+  })
+  }
+
+  checkIfPair() {
+    if (this.pickedCards.length < 2) return;
     this.pairsClicked += 1;
+    const card1 = this.pickedCards[0]getAttribute;
+    const card2 = this.pickedCards[1];
     if (card1 === card2) {
       this.pairsGuessed += 1;
+      this.pickedCards = [];
       return true
     } else {
       return false;
